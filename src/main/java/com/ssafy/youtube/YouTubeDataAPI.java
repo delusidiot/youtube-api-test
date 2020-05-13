@@ -50,8 +50,8 @@ public class YouTubeDataAPI {
                 .build();
 
         LocalServerReceiver localReceiver = new LocalServerReceiver.Builder()
-                .setHost("localhost")
-                .setPort(8080).build();
+                .setHost("www.delusidiot.me")
+                .setPort(80).build();
 
         Credential credential = new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
 
