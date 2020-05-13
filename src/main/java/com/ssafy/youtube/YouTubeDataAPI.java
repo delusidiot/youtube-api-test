@@ -48,19 +48,18 @@ public class YouTubeDataAPI {
                 .setDataStoreFactory(DATA_STORE_FACTORY)
                 .setAccessType("offline")
                 .build();
-
+        System.out.println(flow);
         LocalServerReceiver localReceiver = new LocalServerReceiver.Builder()
-                .setHost("www.delusidiot.me")
-                .setPort(80).build();
+                .setHost("localhost")
+                .setPort(8080).build();
 
         Credential credential = new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
-
+        System.out.println(credential);
         return credential;
     }
 
     public static YouTube getYouTubeService() throws IOException {
         Credential credential = authorize();
-
         return new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
                 .setApplicationName(APPLICATION_NAME)
                 .build();

@@ -1,5 +1,6 @@
 package com.ssafy.youtube;
 
+import com.google.api.services.youtube.model.ChannelListResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,13 +14,11 @@ class YoutubeGradelDemoApplicationTests {
      */
     @Test
     public void channels() throws IOException {
-        var result = YouTubeDataAPI.getYouTubeService()
+        ChannelListResponse result = YouTubeDataAPI.getYouTubeService()
                 .channels()
                 .list("id,snippet,brandingSettings,contentDetails,invideoPromotion,statistics,topicDetails")
-//                .setId("UCYfy5yVnG7l2vbTumjYYP9w")
                 .setForUsername("NoCopyrightSounds")
                 .execute();
-
         System.out.println(result);
     }
 
