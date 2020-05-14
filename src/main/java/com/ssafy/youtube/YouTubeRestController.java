@@ -30,6 +30,12 @@ public class YouTubeRestController {
                 .setMine(true)
                 .setMaxResults(maxResult)
                 .execute();
+        var result2 = YouTubeDataAPI.getYouTubeService()
+                .subscriptions()
+                .list("id, snippet, contentDetails")
+                .setMine(true)
+                .setMaxResults(maxResult);
+        System.out.println("subscription list : " + result.getItems());
         return result;
     }
     @GetMapping(value = "/api/playlists")
@@ -56,6 +62,17 @@ public class YouTubeRestController {
         var result = YouTubeDataAPI.getYouTubeService()
                 .liveChatMessages()
                 .list("Cg0KC1ZGaGtYMkdlc1pFKicKGFVDcW1yUEQyZC01WFJOZHJLLWFOSWF2ZxILVkZoa1gyR2VzWkU","snippet")
+                .execute();
+        return result;
+    }
+    @GetMapping(value = "/api/search/{channelId}")
+    public SearchListResponse getSearch(@PathVariable("channelId") String channelId) throws IOException {
+        var result = YouTubeDataAPI.getYouTubeService()
+                .search()
+                .list("snippet")
+                .setChannelId(channelId)
+                .setEventType("live")
+                .setType("video")
                 .execute();
         return result;
     }

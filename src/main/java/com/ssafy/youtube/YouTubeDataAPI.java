@@ -22,7 +22,7 @@ import java.util.List;
 
 public class YouTubeDataAPI {
 
-    private static final String APPLICATION_NAME = "YouTube Master";
+    private static final String APPLICATION_NAME = "YOUTUBE TEST";
     private static final File DATA_STORE_DIR = new File(System.getProperty("user.home"), ".oauth-credentials");
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final List<String> SCOPES = Arrays.asList(YouTubeScopes.YOUTUBE_FORCE_SSL);
@@ -54,7 +54,8 @@ public class YouTubeDataAPI {
                 .setPort(8080).build();
 
         Credential credential = new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
-        System.out.println(credential);
+        System.out.println("access-token : " + credential.getAccessToken());
+        System.out.println("refresh-token : " + credential.getRefreshToken());
         return credential;
     }
 
